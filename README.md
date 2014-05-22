@@ -28,11 +28,15 @@ Example:
 
 Default fields
 * **id** *int* the current post ID
+* **uri** *string the path to the post
 * **title** *string* the current post title
-* **author** *string* the current post author(s)
+* **authors** *array* the current post author(s)
 * **published** *string* the original post published date in UTC format
 * **lmt** *string* the last time the post was modified in UTC format
 * **lead_image** *string* the designated lead image url, or first image, in the post
+* **shareurl** *string* the bitly link to the post for sharing
+* **adkey** *string* the ad key
+* **omniture** *array* omniture data fields
 * **items** *array* each paragraph broken into [individual types](#supported)
 
 Default fields example
@@ -40,7 +44,16 @@ Default fields example
 {
     "id": 88,
 	"title": "This is the hard part: Getting that Syria plan through the United Nations",
-	"author": "Yuri Victor",
+	"authors": [
+		{
+			"name": "Yuri Victor",
+			"email": "yurivictor@gmail.com"
+		},
+		{
+			"name": "Guest",
+			"email": null
+		}
+	],
 	"published": "2013-09-18T14:25:54+00:00",
 	"lmt": "2013-10-11T08:51:15+00:00",
 	"lead_image": "http://www.washingtonpost.com/blogs/worldviews/files/2013/09/91114059.jpg",
@@ -57,13 +70,24 @@ Default fields example
 
 #### Image<a name="image"></a>
 
+Fields
+* **type** *string* always image
+* **caption** *string* the photo caption
+* **src** *string* the full url to the image
+* **width** *int*
+* **height** *int*
+* **mime** *string* the mime type of image
+
 Example response
 ```
 {
 	"type": "image",
-	"caption": "Diplomats meet at the United Nations Security Council (Hiroko Masuike/Getty Images)",
-	"src": "http://www.washingtonpost.com/blogs/worldviews/files/2013/09/91114059.jpg"
-},
+	"caption": "At the MSNBC after-party when people began taking off their shoes. (Sarah Voisin / The Washington Post)",
+	"src": "http://www.washingtonpost.com/blogs/reliable-source/files/2013/04/party-191367135714_image_982w.jpg",
+	"width": 982,
+	"height": 655,
+	"mime": "image/jpeg"
+}
 ```
 
 #### Sanitized_html<a name="tweet"></a>
